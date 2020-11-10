@@ -3,6 +3,8 @@ package com.meed223.rms_editor.map;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.meed223.rms_editor.map.elements.Cliff;
 import com.meed223.rms_editor.map.elements.Connection;
@@ -13,25 +15,33 @@ import com.meed223.rms_editor.map.elements.Object;
 import com.meed223.rms_editor.map.elements.Player;
 import com.meed223.rms_editor.map.elements.Terrain;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@EqualsAndHashCode
 public class RMS {
     /* Object Info */
     public String mapName;
     private GameType game;
 
     /* RMS Map Constants */
-    //public ArrayList<mapDefinition> mapDefs;      // For random at start of maps, for deciding if snowy, etc.
     public ArrayList<MapConst> mapConsts;
     private String baseTerrain;
+    public Map<String, Long> terrainDefs;
+    public Map<String, Long> objectDefs;
 
     /* RMS Generation Objects */
     private Player player;
-    private ArrayList<Land> landGeneration;
-    private ArrayList<Terrain> terrainGeneration;
-    private ArrayList<Object> objectGeneration;
-    private ArrayList<Elevation> elevationGeneration;
-    private ArrayList<Connection> teamConnectionGeneration;
-    private ArrayList<Connection> playerConnectionGeneration;
-    private ArrayList<Connection> allLandConnectionGeneration;
+    private List<Land> landGeneration;
+    private List<Terrain> terrainGeneration;
+    private List<Object> objectGeneration;
+    private List<Elevation> elevationGeneration;
+    private List<Connection> teamConnectionGeneration;
+    private List<Connection> playerConnectionGeneration;
+    private List<Connection> allLandConnectionGeneration;
     private Cliff cliffGeneration;
 
     /* Constructor(s) */
@@ -62,30 +72,12 @@ public class RMS {
     	}
     	
     }
-    
-    /* Hash Code */
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 5 * hash + mapName.hashCode();
-        hash = 7 * hash + mapConsts.hashCode();
-        hash = 5 * hash + baseTerrain.hashCode();
-        hash = 7 * hash + player.hashCode();
-        hash = 5 * hash + landGeneration.hashCode();
-        hash = 7 * hash + terrainGeneration.hashCode();
-        hash = 5 * hash + objectGeneration.hashCode();
-        hash = 7 * hash + elevationGeneration.hashCode();
-        hash = 5 * hash + teamConnectionGeneration.hashCode();
-        hash = 7 * hash + playerConnectionGeneration.hashCode();
-        hash = 5 * hash + allLandConnectionGeneration.hashCode();
-        hash = 7 * hash + cliffGeneration.hashCode();
-        return hash;
-    }
 
     /* Generate RMS */
     @Override
     public String toString() {
         StringBuilder rms = new StringBuilder();
+        // TODO loop through const. maps to define constants
 
         /* Map information */
         rms.append("/* ===[ ");
@@ -152,103 +144,5 @@ public class RMS {
         }
 
         return rms.toString();
-    }
-
-    /* Getters & Setters */
-
-    public String getMapName() {
-        return mapName;
-    }
-
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
-    public ArrayList<MapConst> getMapConsts() {
-        return mapConsts;
-    }
-
-    public void setMapConsts(ArrayList<MapConst> MapConsts) {
-        this.mapConsts = MapConsts;
-    }
-
-    public String getBaseTerrain() {
-        return baseTerrain;
-    }
-
-    public void setBaseTerrain(String baseTerrain) {
-        this.baseTerrain = baseTerrain;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public ArrayList<Land> getLandGeneration() {
-        return landGeneration;
-    }
-
-    public void setLandGeneration(ArrayList<Land> landGeneration) {
-        this.landGeneration = landGeneration;
-    }
-
-    public ArrayList<Terrain> getTerrainGeneration() {
-        return terrainGeneration;
-    }
-
-    public void setTerrainGeneration(ArrayList<Terrain> terrainGeneration) {
-        this.terrainGeneration = terrainGeneration;
-    }
-
-    public ArrayList<Object> getObjectGeneration() {
-        return objectGeneration;
-    }
-
-    public void setObjectGeneration(ArrayList<Object> objectGeneration) {
-        this.objectGeneration = objectGeneration;
-    }
-
-    public ArrayList<Elevation> getElevationGeneration() {
-        return elevationGeneration;
-    }
-
-    public void setElevationGeneration(ArrayList<Elevation> elevationGeneration) {
-        this.elevationGeneration = elevationGeneration;
-    }
-
-    public ArrayList<Connection> getTeamConnectionGeneration() {
-        return teamConnectionGeneration;
-    }
-
-    public void setTeamConnectionGeneration(ArrayList<Connection> teamConnectionGeneration) {
-        this.teamConnectionGeneration = teamConnectionGeneration;
-    }
-
-    public ArrayList<Connection> getPlayerConnectionGeneration() {
-        return playerConnectionGeneration;
-    }
-
-    public void setPlayerConnectionGeneration(ArrayList<Connection> playerConnectionGeneration) {
-        this.playerConnectionGeneration = playerConnectionGeneration;
-    }
-
-    public ArrayList<Connection> getAllLandConnectionGeneration() {
-        return allLandConnectionGeneration;
-    }
-
-    public void setAllLandConnectionGeneration(ArrayList<Connection> allLandConnectionGeneration) {
-        this.allLandConnectionGeneration = allLandConnectionGeneration;
-    }
-
-    public Cliff getCliffGeneration() {
-        return cliffGeneration;
-    }
-
-    public void setCliffGeneration(Cliff cliffGeneration) {
-        this.cliffGeneration = cliffGeneration;
     }
 }
