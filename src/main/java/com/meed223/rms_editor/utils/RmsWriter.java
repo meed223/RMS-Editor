@@ -8,7 +8,7 @@ public class RmsWriter {
     public static void write(RMS map) {
         // Write out rms to a file
         try {
-            FileWriter rmsWriter = new FileWriter("maps\\" + map.mapName + ".rms");
+            FileWriter rmsWriter = new FileWriter("src\\main\\resources\\maps\\" + map.mapName + ".rms");
             rmsWriter.write(map.toString());
             rmsWriter.close();
         } catch (IOException ex) {

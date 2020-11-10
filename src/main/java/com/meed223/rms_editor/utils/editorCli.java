@@ -24,7 +24,7 @@ public class editorCli {
 
         RmsBuilder builder = new RmsBuilder();
         System.out.println("Enter a map name: ");
-
+        builder.setMapName(sc.nextLine());
 
         boolean L2 = true;
         while (L2) {
