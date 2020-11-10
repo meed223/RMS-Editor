@@ -1,8 +1,10 @@
 package com.meed223.rms_editor.utils;
 
 import java.util.ArrayList;
-import com.meed223.rms_editor.elements.*;
-import com.meed223.rms_editor.elements.Object;
+
+import com.meed223.rms_editor.map.RMS;
+import com.meed223.rms_editor.map.elements.*;
+import com.meed223.rms_editor.map.elements.Object;
 
 
 

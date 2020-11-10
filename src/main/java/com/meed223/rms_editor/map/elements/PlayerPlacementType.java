@@ -1,4 +1,4 @@
-package com.meed223.rms_editor.elements;
+package com.meed223.rms_editor.map.elements;
 
 public enum PlayerPlacementType {
     RANDOM ("random_placement");

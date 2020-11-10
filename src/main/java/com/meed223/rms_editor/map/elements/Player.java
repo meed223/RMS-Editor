@@ -1,4 +1,6 @@
-package com.meed223.rms_editor.elements;
+package com.meed223.rms_editor.map.elements;
+
+import com.meed223.rms_editor.map.GameType;
 
 public class Player {
 

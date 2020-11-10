@@ -1,4 +1,4 @@
-package com.meed223.rms_editor.elements;
+package com.meed223.rms_editor.map.elements;
 
 import com.meed223.rms_editor.exceptions.InvalidInputException;
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;

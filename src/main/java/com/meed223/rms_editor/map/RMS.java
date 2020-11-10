@@ -1,8 +1,17 @@
-package com.meed223.rms_editor.elements;
+package com.meed223.rms_editor.map;
 
 
 
 import java.util.ArrayList;
+
+import com.meed223.rms_editor.map.elements.Cliff;
+import com.meed223.rms_editor.map.elements.Connection;
+import com.meed223.rms_editor.map.elements.Elevation;
+import com.meed223.rms_editor.map.elements.Land;
+import com.meed223.rms_editor.map.elements.MapConst;
+import com.meed223.rms_editor.map.elements.Object;
+import com.meed223.rms_editor.map.elements.Player;
+import com.meed223.rms_editor.map.elements.Terrain;
 
 public class RMS {
     /* Object Info */

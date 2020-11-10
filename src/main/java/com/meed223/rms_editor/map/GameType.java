@@ -1,6 +1,6 @@
-package com.meed223.rms_editor.elements;
+package com.meed223.rms_editor.map;
 
-enum GameType {
+public enum GameType {
 	// Possible Types
 	DE, 	// Definitive Edition
 	HD, 	// HD /  2013 Edition
