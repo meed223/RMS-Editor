@@ -5,6 +5,7 @@ import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
 
 public class Object {
     private String objectName;
+    private GameType gameType;
     private String terrainToPlace;
     private int numberObjects;
     private int groupVariance;
@@ -20,6 +21,7 @@ public class Object {
     /* Constructor(s) */
     public Object(String objectName) {
         this.objectName = objectName;
+        this.gameType = GameType.DE;
         numberObjects = 0;
         groupVariance = 0;
         groupPlacementRadius = 0;
@@ -33,6 +35,7 @@ public class Object {
 
     public Object() {
         this.objectName = null;
+        this.gameType = GameType.DE;
         numberObjects = 0;
         groupVariance = 0;
         groupPlacementRadius = 0;
@@ -44,6 +47,28 @@ public class Object {
         minGroupDistance = 0;
     }
 
+    /* Update Game Type */
+    public void updateGameType(GameType type) {
+    	if (this.gameType == type) {
+    		return;
+    	}
+    	
+    	// TODO implement checks
+    	switch(type) {
+    	case DE:
+    		this.gameType = GameType.DE;
+    		break;
+    	case HD:
+    		this.gameType = GameType.HD;
+    		break;
+    	case AOC:
+    		this.gameType = GameType.AOC;
+    		break;
+    	default:
+    		this.gameType = GameType.DE;
+    	}
+    }
+    
     /* Hash Code */
     @Override
     public int hashCode() {

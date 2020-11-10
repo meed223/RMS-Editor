@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class RMS {
     /* Object Info */
     public String mapName;
+    private GameType game;
 
     /* RMS Map Constants */
     //public ArrayList<mapDefinition> mapDefs;      // For random at start of maps, for deciding if snowy, etc.
@@ -45,6 +46,14 @@ public class RMS {
         cliffGeneration = new Cliff();
     }
 
+    /* Update Game Type */
+    public void updateGameType(GameType newType) {
+    	if (game == newType) {
+    		return;
+    	}
+    	
+    }
+    
     /* Hash Code */
     @Override
     public int hashCode() {

@@ -3,6 +3,8 @@ package com.meed223.rms_editor.utils;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.meed223.rms_editor.elements.RMS;
+
 public class RmsWriter {
 
     public static void write(RMS map) {
