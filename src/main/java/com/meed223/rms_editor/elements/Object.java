@@ -4,7 +4,7 @@ import com.meed223.rms_editor.exceptions.InvalidMapObjectException;
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
 
 public class Object {
-    private String objectName;
+    private ObjectType objType;
     private String terrainToPlace;
     private int numberObjects;
     private int groupVariance;
@@ -18,37 +18,37 @@ public class Object {
     private int minGroupDistance;
 
     /* Constructor(s) */
-    public Object(String objectName) {
-        this.objectName = objectName;
-        numberObjects = 0;
-        groupVariance = 0;
-        groupPlacementRadius = 0;
-        looseGrouping = false;
-        gaiaObject = false;
-        placeForEveryPlayer = false;
-        minPlayerDistance = 0;
-        maxPlayerDistance = 0;
-        minGroupDistance = 0;
+    public Object(ObjectType type) {
+        this.objType = type;
+        this.numberObjects = 0;
+        this.groupVariance = 0;
+        this.groupPlacementRadius = 0;
+        this. looseGrouping = false;
+        this.gaiaObject = false;
+        this.placeForEveryPlayer = false;
+        this.minPlayerDistance = 0;
+        this.maxPlayerDistance = 0;
+        this.minGroupDistance = 0;
     }
 
     public Object() {
-        this.objectName = null;
-        numberObjects = 0;
-        groupVariance = 0;
-        groupPlacementRadius = 0;
-        looseGrouping = false;
-        gaiaObject = false;
-        placeForEveryPlayer = false;
-        minPlayerDistance = 0;
-        maxPlayerDistance = 0;
-        minGroupDistance = 0;
+        this.objType = null;
+        this.numberObjects = 0;
+        this.groupVariance = 0;
+        this.groupPlacementRadius = 0;
+        this.looseGrouping = false;
+        this.gaiaObject = false;
+        this.placeForEveryPlayer = false;
+        this.minPlayerDistance = 0;
+        this.maxPlayerDistance = 0;
+        this.minGroupDistance = 0;
     }
 
     /* Hash Code */
     @Override
     public int hashCode() {
         int hash = 31;
-        hash = hash * 7 + (objectName == null ? 0 : objectName.hashCode());
+        hash = hash * 7 + (objType == null ? 0 : objType.hashCode());
         hash = hash * 7 + (terrainToPlace == null ? 0 : terrainToPlace.hashCode());
         hash = hash * 7 + numberObjects;
         hash = hash * 7 + groupVariance;
@@ -68,7 +68,7 @@ public class Object {
     public String toString() {
         StringBuilder returnString = new StringBuilder();
         returnString.append("\n");
-        returnString.append(objectName);
+        returnString.append(objType.toString());
         returnString.append("\n{");
         returnString.append("\n    number_of_objects ");
         returnString.append(numberObjects);
@@ -101,15 +101,15 @@ public class Object {
     }
 
     /* Getter & Setter Methods */
-    public String getObjectName() {
-        return objectName;
+    public ObjectType getObjectName() {
+        return objType;
     }
 
-    public void setObjectName(String objectName) throws InvalidMapObjectException {
-        if (objectName == null) {
+    public void setObjectName(ObjectType type) throws InvalidMapObjectException {
+        if (type == null) {
             throw new InvalidMapObjectException("Null value given for object name. Non-null value expected.");
         } else {
-            this.objectName = objectName.replaceAll("\\s", "_");
+            this.objType = type;
         }
     }
 
