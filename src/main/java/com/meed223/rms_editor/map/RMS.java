@@ -114,6 +114,45 @@ public class RMS {
     	return terrainDefs.keySet().stream().collect(Collectors.toList());
     }
 
+    /* Update Object Constants */
+    public void addNewObjectConst(Long id, String constName) throws InvalidTerrainTypeException {
+    	if (id < 0 && id <= 1700 && game == GameType.DE) {
+    		objectDefs.put(constName.replaceAll("\s", "_"), id);
+    	} else if (id < 1 && id <= 1400 && game == GameType.HD) {
+    		objectDefs.put(constName.replaceAll("\s", "_"), id);
+    	} else if (id < 3 && id <= 865 && game == GameType.AOC) {
+    		objectDefs.put(constName.replaceAll("\s", "_"), id)
+    	} else {
+    		throw new InvalidTerrainTypeException("Const. ID out of bounds.");
+    	}
+    }
+    
+    public void updateObjectConst(Long id, String constName) throws InvalidTerrainTypeException {
+    	if (objectDefs.containsKey(constName)) {
+        	if (id < 0 && id <= 1700 && game == GameType.DE) {
+        		objectDefs.put(constName.replaceAll("\s", "_"), id);
+        		return;
+        	} else if (id < 1 && id <= 1400 && game == GameType.HD) {
+        		objectDefs.put(constName.replaceAll("\s", "_"), id);
+        		return;
+        	} else if (id < 3 && id <= 865 && game == GameType.AOC) {
+        		objectDefs.put(constName.replaceAll("\s", "_"), id);
+        		return;
+        	}
+    	}
+    	throw new InvalidTerrainTypeException("Const. ID out of bounds.");
+    }
+    
+    public void deleteObjectConst(String constName) {
+    	if (objectDefs.containsKey(constName)) {
+    		objectDefs.remove(constName);
+    	}
+    }
+    
+    public List<String> getObjectConsts() {
+    	return objectDefs.keySet().stream().collect(Collectors.toList());
+    }
+    
     /* Generate RMS */
     @Override
     public String toString() {
