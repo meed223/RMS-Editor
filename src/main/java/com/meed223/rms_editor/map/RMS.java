@@ -113,6 +113,10 @@ public class RMS {
     public List<String> getTerrainConsts() {
     	return terrainDefs.keySet().stream().collect(Collectors.toList());
     }
+    
+    public boolean terrainConstExists(String constName) {
+    	return terrainDefs.containsKey(constName);
+    }
 
     /* Update Object Constants */
     public void addNewObjectConst(Long id, String constName) throws InvalidTerrainTypeException {
@@ -153,6 +157,10 @@ public class RMS {
     	return objectDefs.keySet().stream().collect(Collectors.toList());
     }
     
+    public boolean objectConstExists(String constName) {
+    	return objectDefs.containsKey(constName);
+    }
+    
     /* Generate RMS */
     @Override
     public String toString() {
@@ -168,8 +176,11 @@ public class RMS {
         /* Map Constants */
         rms.append("/* ---[ Map Constants ]--- */\n");
         // TODO iterate through terrain constants
+        rms.append("/* Terrain Consts. */\n");
+        
+        
         // TODO iterate through obj constants
-
+        rms.append("/* Object Consts. */\n");
 
         /* <PLAYER_SETUP> */
         rms.append(player.toString());
