@@ -121,7 +121,7 @@ public class RMS {
     	} else if (id < 1 && id <= 1400 && game == GameType.HD) {
     		objectDefs.put(constName.replaceAll("\s", "_"), id);
     	} else if (id < 3 && id <= 865 && game == GameType.AOC) {
-    		objectDefs.put(constName.replaceAll("\s", "_"), id)
+    		objectDefs.put(constName.replaceAll("\s", "_"), id);
     	} else {
     		throw new InvalidTerrainTypeException("Const. ID out of bounds.");
     	}
