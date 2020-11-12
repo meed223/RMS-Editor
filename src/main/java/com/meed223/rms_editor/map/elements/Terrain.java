@@ -1,9 +1,11 @@
-package com.meed223.rms_editor.elements;
+package com.meed223.rms_editor.map.elements;
 
 import com.meed223.rms_editor.exceptions.InvalidInputException;
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
+import com.meed223.rms_editor.map.GameType;
 
 public class Terrain {
+	private GameType gameType;
     private String terrainType;
     private String baseTerrain;
     private int baseSize;
@@ -26,6 +28,7 @@ public class Terrain {
     /* Constructors */
     public Terrain(String terrainType) {
         this.terrainType = terrainType;
+        this.gameType = GameType.DE;
         baseTerrain = null;
         baseSize = 0;
         spacingToOtherTerrains = 0;
@@ -46,7 +49,8 @@ public class Terrain {
 
     public Terrain() {
         this.terrainType = null;
-        baseTerrain = null;
+        this.gameType = GameType.DE;
+        baseTerrain = null;        
         baseSize = 0;
         spacingToOtherTerrains = 0;
         numberClumps = 0;
@@ -64,6 +68,28 @@ public class Terrain {
         avoidPlayerAreas = false;
     }
 
+    /* Update Game Type */
+    public void updateGameType(GameType type) {
+    	if (this.gameType == type) {
+    		return;
+    	}
+    	
+    	// TODO implement checks
+    	switch(type) {
+    	case DE:
+    		this.gameType = GameType.DE;
+    		break;
+    	case HD:
+    		this.gameType = GameType.HD;
+    		break;
+    	case AOC:
+    		this.gameType = GameType.AOC;
+    		break;
+    	default:
+    		this.gameType = GameType.DE;
+    	}
+    }
+    
     /* Hash Code */
     @Override
     public int hashCode() {

@@ -4,4 +4,20 @@
   <artifactId>RMS-Editor</artifactId>
   <version>0.0.1</version>
   <name>RMS-Editor</name>
+  
+  <properties>
+	    <maven.compiler.release>15</maven.compiler.release>
+	    <maven.compiler.source>1.8</maven.compiler.source>
+  		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+  
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+	<dependency>
+	    <groupId>org.projectlombok</groupId>
+	    <artifactId>lombok</artifactId>
+	    <version>1.18.12</version>
+	    <scope>provided</scope>
+	</dependency>
+  </dependencies>
 </project>

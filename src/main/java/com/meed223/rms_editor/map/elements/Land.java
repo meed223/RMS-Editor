@@ -1,9 +1,11 @@
-package com.meed223.rms_editor.elements;
+package com.meed223.rms_editor.map.elements;
 
 import com.meed223.rms_editor.exceptions.InvalidInputException;
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
+import com.meed223.rms_editor.map.GameType;
 
 public class Land {
+	private GameType gameType;
     private String terrainType;
     private int landPercent;
     private int borderFuzziness;
@@ -20,6 +22,7 @@ public class Land {
     /* Constructor(s) */
     public Land(String terrainType) {
         this.terrainType = terrainType;
+        gameType = GameType.DE;
         landPercent = 0;
         borderFuzziness = 0;
         zoneAvoidance = 0;
@@ -35,6 +38,7 @@ public class Land {
 
     public Land() {
         terrainType = null;
+        gameType = GameType.DE;
         landPercent = 0;
         borderFuzziness = 0;
         zoneAvoidance = 0;
@@ -48,6 +52,28 @@ public class Land {
         clumpingFactor = 8; // Default Value
     }
 
+    /* Update Game Type */
+    public void updateGameType(GameType type) {
+    	if (this.gameType == type) {
+    		return;
+    	}
+    	
+    	// TODO implement checks
+    	switch(type) {
+    	case DE:
+    		this.gameType = GameType.DE;
+    		break;
+    	case HD:
+    		this.gameType = GameType.HD;
+    		break;
+    	case AOC:
+    		this.gameType = GameType.AOC;
+    		break;
+    	default:
+    		this.gameType = GameType.DE;
+    	}
+    }
+    
     /* Hash Code */
     @Override
     public int hashCode() {
@@ -65,11 +91,13 @@ public class Land {
         hash = 7 * hash + assignToPlayerSet.hashCode();
         hash = 7 * hash + clumpingFactor;
         return hash;
+        // TODO add null check for bool objects
     }
 
     /* Convert to RMS */
     @Override
     public String toString() {
+    	// TODO implement RMS method
         return "";
     }
 
