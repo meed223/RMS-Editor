@@ -13,16 +13,19 @@ public class Player {
 
     private PlayerPlacementType playerType;
     private GameType gameType;
+    private boolean nomad;
 
     /* Constructor(s) */
     public Player() {
     	this.gameType = GameType.DE;
         this.playerType = PlayerPlacementType.RANDOM;
+        nomad = false;
     }
     
     public Player(GameType gameType) {
     	this.gameType = gameType;
     	this.playerType = PlayerPlacementType.RANDOM;
+    	nomad = false;
     }
     
     /* Update Game Type */
@@ -42,8 +45,10 @@ public class Player {
     		}
     		break;
     	case AOC:
+    		// Enforce compatibility with AoC
     		this.gameType = GameType.AOC;
-    		this.playerType = PlayerPlacementType.RANDOM; // Only type supported
+    		this.playerType = PlayerPlacementType.RANDOM;
+    		this.nomad = false;  
     		break;
     	default:
     		this.gameType = GameType.DE;
@@ -53,6 +58,14 @@ public class Player {
     /* Convert to RMS */
     @Override
     public String toString() {
-        return "<PLAYER_SETUP>\n" + playerType.getPlacementType();
+        StringBuilder playerSetup = new StringBuilder();
+        playerSetup.append("<PLAYER_SETUP>\n");
+        playerSetup.append(playerType);
+        playerSetup.append("\n");
+        playerSetup.append(gameType);
+        if (nomad) {
+        	playerSetup.append("nomad_resources\n");
+        }
+        return playerSetup.toString();
     }
 }
