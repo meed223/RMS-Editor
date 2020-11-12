@@ -2,6 +2,13 @@ package com.meed223.rms_editor.map.elements;
 
 import com.meed223.rms_editor.map.GameType;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Player {
 
     private PlayerPlacementType playerType;
@@ -30,37 +37,22 @@ public class Player {
     		break;
     	case HD:
     		this.gameType = GameType.HD;
+    		if (playerType == PlayerPlacementType.DIRECT) {
+    			playerType = PlayerPlacementType.RANDOM; // HD doesn't support Direct
+    		}
     		break;
     	case AOC:
     		this.gameType = GameType.AOC;
-    		this.playerType = PlayerPlacementType.RANDOM;
+    		this.playerType = PlayerPlacementType.RANDOM; // Only type supported
     		break;
     	default:
     		this.gameType = GameType.DE;
     	}
     }
 
-    /* Hash Code */
-    @Override
-    public int hashCode() {
-        int hash = 31;
-        hash = 7 * hash + (playerType == null ? 0 : playerType.hashCode());
-        return hash;
-    }
-
     /* Convert to RMS */
     @Override
     public String toString() {
         return "<PLAYER_SETUP>\n" + playerType.getPlacementType();
-    }
-
-    /* Getters & Setters */
-    public PlayerPlacementType getType() {
-        return playerType;
-    }
-
-    public void setPlacementType(PlayerPlacementType type) {
-        // TODO - remove or repurpose InvalidPlayerTypeException
-        this.playerType = type;
     }
 }
