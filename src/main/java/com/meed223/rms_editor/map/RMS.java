@@ -1,16 +1,15 @@
 package com.meed223.rms_editor.map;
 
-
-
+/*---[ Imports ]---*/
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
 import com.meed223.rms_editor.map.elements.Cliff;
 import com.meed223.rms_editor.map.elements.Connection;
 import com.meed223.rms_editor.map.elements.Elevation;
 import com.meed223.rms_editor.map.elements.Land;
-import com.meed223.rms_editor.map.elements.MapConst;
 import com.meed223.rms_editor.map.elements.Object;
 import com.meed223.rms_editor.map.elements.Player;
 import com.meed223.rms_editor.map.elements.Terrain;
@@ -28,7 +27,6 @@ public class RMS {
     private GameType game;
 
     /* RMS Map Constants */
-    public ArrayList<MapConst> mapConsts;
     private String baseTerrain;
     public Map<String, Long> terrainDefs;
     public Map<String, Long> objectDefs;
@@ -50,7 +48,6 @@ public class RMS {
         mapName = null;
 
         // Map constants
-        mapConsts = new ArrayList<>();
         baseTerrain = null;
 
         // Generation objects
@@ -72,6 +69,45 @@ public class RMS {
     	}
     	
     }
+    
+    /* Update Terrain Constants */
+    public void addNewTerrainConst(Long id, String constName) throws InvalidTerrainTypeException {
+    	if (id < 0) {
+    		// Check if const-id is valid value for game-type
+    		if (id <= 109 && game == GameType.DE) {
+    			terrainDefs.put(constName.replaceAll("\s", "_"), id);
+    			return;
+    		}
+    		if (id <= 99 && game == GameType.HD) {
+    			terrainDefs.put(constName.replaceAll("\s", "_"), id);
+    			return;
+    		}
+    		// TODO find max-value for AoC
+    	}
+    	throw new InvalidTerrainTypeException("Const. ID out of bounds.");
+    }
+    
+    public void updateTerrainConst(Long id, String constName) throws InvalidTerrainTypeException {
+    	if (id < 0 && terrainDefs.containsKey(constName)) {
+    		// Check if const-id is valid value for game-type
+    		if (id <= 109 && game == GameType.DE) {
+    			terrainDefs.put(constName.replaceAll("\s", "_"), id);
+    			return;
+    		}
+    		if (id <= 99 && game == GameType.HD) {
+    			terrainDefs.put(constName.replaceAll("\s", "_"), id);
+    			return;
+    		}
+    		// TODO find max-value for AoC
+    	}
+    	throw new InvalidTerrainTypeException("Const. ID out of bounds.");
+    }
+    
+    public void deleteTerrainConst(String constName) {
+    	if (terrainDefs.containsKey(constName)) {
+    		terrainDefs.remove(constName);
+    	}
+    }
 
     /* Generate RMS */
     @Override
@@ -87,9 +123,8 @@ public class RMS {
 
         /* Map Constants */
         rms.append("/* ---[ Map Constants ]--- */\n");
-        for (MapConst mapConst : mapConsts) {
-            rms.append(mapConst.toString());
-        }
+        // TODO iterate through terrain constants
+        // TODO iterate through obj constants
 
 
         /* <PLAYER_SETUP> */
