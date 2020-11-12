@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.meed223</groupId>
   <artifactId>RMS-Editor</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <name>RMS-Editor</name>
   
   <properties>
