@@ -14,8 +14,6 @@ import com.meed223.rms_editor.map.elements.Object;
         public String mapName;
 
         /* RMS Map Constants */
-        //public ArrayList<mapDefinition> mapDefs;      // For random at start of maps, for deciding if snowy, etc.
-        public ArrayList<MapConst> mapConsts;
         private String baseTerrain;
 
         /* RMS Generation Objects */
@@ -35,7 +33,6 @@ import com.meed223.rms_editor.map.elements.Object;
             mapName = null;
 
             // Map constants
-            mapConsts = new ArrayList<>();
             baseTerrain = null;
 
             // Generation objects
@@ -54,7 +51,6 @@ import com.meed223.rms_editor.map.elements.Object;
         public RMS build() {
             RMS map = new RMS();
             map.setMapName(mapName);
-            map.setMapConsts(mapConsts);
             map.setBaseTerrain(baseTerrain);
             map.setPlayer(player);
             map.setLandGeneration(landGeneration);
@@ -76,23 +72,7 @@ import com.meed223.rms_editor.map.elements.Object;
             return mapName;
         }
 
-        public void addMapConst(MapConst mc) {
-            mapConsts.add(mc);
-        }
-
-        public void removeMapConst(MapConst mc) {
-            mapConsts.remove(mc);
-        }
-
-        public ArrayList<MapConst> getMapConsts() {
-            return mapConsts;
-        }
-
-        public void emptyMapConsts() {
-            for (MapConst mc : mapConsts) {
-                mapConsts.remove(mc);
-            }
-        }
+        // TODO add const-map methods
 
         public void setBaseTerrain(String baseTerrain) {
             this.baseTerrain = baseTerrain;
