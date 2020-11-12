@@ -4,6 +4,7 @@ package com.meed223.rms_editor.map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
 import com.meed223.rms_editor.map.elements.Cliff;
@@ -28,8 +29,8 @@ public class RMS {
 
     /* RMS Map Constants */
     private String baseTerrain;
-    public Map<String, Long> terrainDefs;
-    public Map<String, Long> objectDefs;
+    private Map<String, Long> terrainDefs;
+    private Map<String, Long> objectDefs;
 
     /* RMS Generation Objects */
     private Player player;
@@ -107,6 +108,10 @@ public class RMS {
     	if (terrainDefs.containsKey(constName)) {
     		terrainDefs.remove(constName);
     	}
+    }
+    
+    public List<String> getTerrainConsts() {
+    	return terrainDefs.keySet().stream().collect(Collectors.toList());
     }
 
     /* Generate RMS */
