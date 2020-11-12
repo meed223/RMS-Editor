@@ -165,7 +165,7 @@ public class RMS {
     @Override
     public String toString() {
         StringBuilder rms = new StringBuilder();
-        // TODO loop through const. maps to define constants
+
 
         /* Map information */
         rms.append("/* ===[ ");
@@ -175,13 +175,16 @@ public class RMS {
 
         /* Map Constants */
         rms.append("/* ---[ Map Constants ]--- */\n");
-        // TODO iterate through terrain constants
-        rms.append("/* Terrain Consts. */\n");
+        rms.append("/* Terrain Consts. */");
+        for (Map.Entry<String, Long> entry : terrainDefs.entrySet()) {
+        	rms.append("\n#const " + entry.getKey() + " " + entry.getValue());
+        }
         
+        rms.append("\n/* Object Consts. */\n");
+        for (Map.Entry<String, Long> entry : objectDefs.entrySet()) {
+        	rms.append("\n#const " + entry.getKey() + " " + entry.getValue());
+        }
         
-        // TODO iterate through obj constants
-        rms.append("/* Object Consts. */\n");
-
         /* <PLAYER_SETUP> */
         rms.append(player.toString());
 
