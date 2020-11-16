@@ -6,26 +6,30 @@ import com.meed223.rms_editor.map.RMS;
 import com.meed223.rms_editor.map.elements.*;
 import com.meed223.rms_editor.map.elements.Object;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@EqualsAndHashCode
+public class RmsBuilder {
+	/* Object Info */
+    public String mapName;
 
+    /* RMS Map Constants */
+    private String baseTerrain;
 
-    public class RmsBuilder {
-        /* Object Info */
-        public String mapName;
-
-        /* RMS Map Constants */
-        private String baseTerrain;
-
-        /* RMS Generation Objects */
-        private Player player;
-        private ArrayList<Land> landGeneration;
-        private ArrayList<Terrain> terrainGeneration;
-        private ArrayList<Object> objectGeneration;
-        private ArrayList<Elevation> elevationGeneration;
-        private ArrayList<Connection> teamConnectionGeneration;
-        private ArrayList<Connection> playerConnectionGeneration;
-        private ArrayList<Connection> allLandConnectionGeneration;
-        private Cliff cliffGeneration;
+    /* RMS Generation Objects */
+    private Player player;
+    private ArrayList<Land> landGeneration;
+    private ArrayList<Terrain> terrainGeneration;
+    private ArrayList<Object> objectGeneration;
+    private ArrayList<Elevation> elevationGeneration;
+    private ArrayList<Connection> teamConnectionGeneration;
+    private ArrayList<Connection> playerConnectionGeneration;
+    private ArrayList<Connection> allLandConnectionGeneration;
+    private Cliff cliffGeneration;
 
         /* Constructor */
         public RmsBuilder() {
@@ -65,54 +69,99 @@ import com.meed223.rms_editor.map.elements.Object;
 
         /* Getter, Setter & Add, Remove Methods */
         public void setMapName(String mapName) {
+        	// TODO name constraints
             this.mapName = mapName;
-        }
-
-        public String getMapName() {
-            return mapName;
         }
 
         // TODO add const-map methods
 
-        public void setBaseTerrain(String baseTerrain) {
-            this.baseTerrain = baseTerrain;
-        }
-
-        public String getBaseTerrain() {
-            return baseTerrain;
-        }
-
-        public void setPlayer(Player player) {
-            this.player = player;
-        }
-
-        public Player getPlayer() {
-            return player;
-        }
 
         public void addLand(Land land) {
             landGeneration.add(land);
         }
 
+        // Land
         public void removeLand(Land land) {
             landGeneration.remove(land);
         }
 
-        public ArrayList<Land> getLandGeneration() {
-            return landGeneration;
-        }
-
         public void emptyLandGeneration() {
-            for (Land land : landGeneration) {
-                landGeneration.remove(land);
-            }
+            landGeneration = new ArrayList<>();
         }
 
+        // Terrains
         public void addTerrain(Terrain terrain) {
             terrainGeneration.add(terrain);
         }
 
         public void removeTerrain(Terrain terrain) {
             terrainGeneration.remove(terrain);
+        }
+        
+        public void emptyTerrainGeneration() {
+        	terrainGeneration = new ArrayList<>();
+        }
+        
+        // Objects
+        public void addObject(Object obj) {
+        	objectGeneration.add(obj);
+        }
+        
+        public void removeObject(Object obj) {
+        	objectGeneration.remove(obj);
+        }
+        
+        public void emptyObjGeneration() {
+        	objectGeneration = new ArrayList<>();
+        }
+        
+        // Elevations
+        public void addElevation(Elevation elevation) {
+        	elevationGeneration.add(elevation);
+        }
+        
+        public void removeElevation(Elevation elevation) {
+        	elevationGeneration.remove(elevation);
+        }
+        
+        public void emptyElevationGeneration() {
+        	elevationGeneration = new ArrayList<>();
+        }
+        
+        // Connection Generation
+        public void addTeamConnection(Connection connection) {
+        	teamConnectionGeneration.add(connection);
+        }
+        
+        public void removeTeamConnection(Connection connection) {
+        	teamConnectionGeneration.remove(connection);
+        }
+        
+        public void emptyTeamConnection() {
+        	teamConnectionGeneration = new ArrayList<>();
+        }
+        
+        public void addPlayerConnection(Connection connection) {
+        	playerConnectionGeneration.add(connection);
+        }
+        
+        public void removePlayerConnection(Connection connection) {
+        	playerConnectionGeneration.remove(connection);
+        }
+        
+        public void emptyPlayerConnection() {
+        	playerConnectionGeneration = new ArrayList<>();
+        }
+        
+        public void addAllConnection(Connection connection) {
+        	allLandConnectionGeneration.add(connection);
+        }
+        
+        public void removeAllConnection(Connection connection) {
+        	allLandConnectionGeneration.remove(connection);
+        }
+        
+        public void emptyAllConnection() {
+        	allLandConnectionGeneration = new ArrayList<>();
         }
 }

@@ -2,20 +2,30 @@ package com.meed223.rms_editor.map.elements;
 
 import com.meed223.rms_editor.map.GameType;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Player {
 
     private PlayerPlacementType playerType;
     private GameType gameType;
+    private boolean nomad;
 
     /* Constructor(s) */
     public Player() {
     	this.gameType = GameType.DE;
         this.playerType = PlayerPlacementType.RANDOM;
+        nomad = false;
     }
     
     public Player(GameType gameType) {
     	this.gameType = gameType;
     	this.playerType = PlayerPlacementType.RANDOM;
+    	nomad = false;
     }
     
     /* Update Game Type */
@@ -30,37 +40,32 @@ public class Player {
     		break;
     	case HD:
     		this.gameType = GameType.HD;
+    		if (playerType == PlayerPlacementType.DIRECT) {
+    			playerType = PlayerPlacementType.RANDOM; // HD doesn't support Direct
+    		}
     		break;
     	case AOC:
+    		// Enforce compatibility with AoC
     		this.gameType = GameType.AOC;
     		this.playerType = PlayerPlacementType.RANDOM;
+    		this.nomad = false;  
     		break;
     	default:
     		this.gameType = GameType.DE;
     	}
     }
 
-    /* Hash Code */
-    @Override
-    public int hashCode() {
-        int hash = 31;
-        hash = 7 * hash + (playerType == null ? 0 : playerType.hashCode());
-        return hash;
-    }
-
     /* Convert to RMS */
     @Override
     public String toString() {
-        return "<PLAYER_SETUP>\n" + playerType.getPlacementType();
-    }
-
-    /* Getters & Setters */
-    public PlayerPlacementType getType() {
-        return playerType;
-    }
-
-    public void setPlacementType(PlayerPlacementType type) {
-        // TODO - remove or repurpose InvalidPlayerTypeException
-        this.playerType = type;
+        StringBuilder playerSetup = new StringBuilder();
+        playerSetup.append("<PLAYER_SETUP>\n");
+        playerSetup.append(playerType);
+        playerSetup.append("\n");
+        playerSetup.append(gameType);
+        if (nomad) {
+        	playerSetup.append("nomad_resources\n");
+        }
+        return playerSetup.toString();
     }
 }
