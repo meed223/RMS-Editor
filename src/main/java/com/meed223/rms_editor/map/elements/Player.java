@@ -62,7 +62,7 @@ public class Player {
         playerSetup.append("<PLAYER_SETUP>\n");
         playerSetup.append(playerType);
         playerSetup.append("\n");
-        playerSetup.append(gameType);
+        playerSetup.append(gameType); // TODO ???? why is this printed?
         if (nomad) {
         	playerSetup.append("nomad_resources\n");
         }
