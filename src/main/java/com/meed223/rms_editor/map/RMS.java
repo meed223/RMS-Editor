@@ -2,6 +2,7 @@ package com.meed223.rms_editor.map;
 
 /*---[ Imports ]---*/
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -50,6 +51,8 @@ public class RMS {
 
         // Map constants
         baseTerrain = null;
+        terrainDefs = new HashMap<>();
+        objectDefs = new HashMap<>();
 
         // Generation objects
         player = new Player();

@@ -1,6 +1,8 @@
 package com.meed223.rms_editor.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.meed223.rms_editor.map.RMS;
 import com.meed223.rms_editor.map.elements.*;
@@ -19,6 +21,8 @@ public class RmsBuilder {
 
     /* RMS Map Constants */
     private String baseTerrain;
+    private Map<String, Long> terrainDefs;
+    private Map<String, Long> objectDefs;
 
     /* RMS Generation Objects */
     private Player player;
@@ -38,6 +42,8 @@ public class RmsBuilder {
 
             // Map constants
             baseTerrain = null;
+            terrainDefs = new HashMap<>();
+            objectDefs = new HashMap<>();
 
             // Generation objects
             player = new Player();
@@ -69,13 +75,35 @@ public class RmsBuilder {
 
         /* Getter, Setter & Add, Remove Methods */
         public void setMapName(String mapName) {
-        	// TODO name constraints
-            this.mapName = mapName;
+            this.mapName = mapName.replaceAll("\s", "_");
+        }
+        
+
+        public void addTerrainDef(String name, Long id) {
+        	terrainDefs.put(name.replaceAll("\s", "_"), id);
+        }
+        
+        public void addObjectDef(String name, Long id) {
+        	objectDefs.put(name.replaceAll("\s", "_"), id);
         }
 
-        // TODO add const-map methods
 
-
+        public Long getTerrainDef(String name) {
+        	return terrainDefs.get(name);
+        }
+        
+        public Long getObjectDef(String name) {
+        	return objectDefs.get(name);
+        }
+        
+        public boolean terrainDefContains(String name) {
+        	return terrainDefs.containsKey(name);
+        }
+        
+        public boolean objectDefContains(String name) {
+        	return objectDefs.containsKey(name);
+        }
+           
         public void addLand(Land land) {
             landGeneration.add(land);
         }
