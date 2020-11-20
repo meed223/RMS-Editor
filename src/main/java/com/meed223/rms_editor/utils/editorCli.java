@@ -1,5 +1,6 @@
 package com.meed223.rms_editor.utils;
 
+import java.util.Map;
 import java.util.Scanner;
 
 import com.meed223.rms_editor.map.elements.Cliff;
@@ -32,23 +33,30 @@ public class editorCli {
 
         boolean L2 = true;
         while (L2) {
-            System.out.println("Options:\n1. Save\n2. Update Map Name\n3. Update Cliffs\n4. Exit");
+            System.out.println("Options:\n1. Save\n2. Map Name\n3. Terrain Constants\n4. Object Constants\n5. Cliff Generation\n6. Exit");
             input = sc.nextLine();
 
             switch (input.toUpperCase()) {
                 case "1" :
                 case "SAVE" : 
-                	RmsWriter.write(builder.build()); L2 = false; 
+                	RmsWriter.write(builder.build());
                 	break;
                 case "2" :
                 case "NAME" : 
                 	updateName(builder, sc);
                 	break;
-                case "3" :
+                case "3":
+                case "TERRAIN CONSTANTS":
+                	updateTerrainConsts(builder, sc);
+                	break;
+                case "4":
+                case "OBJECT CONSTANTS":
+                	break;
+                case "5" :
                 case "CLIFF" : 
                 	updateCliffs(builder, sc);
                 	break;
-                case "4" :
+                case "6" :
                 case "EXIT": System.exit(15);
             }
         }
@@ -71,6 +79,14 @@ public class editorCli {
 	    		default:
 	    			System.out.println("Invalid input. Please try again.");
     		}
+    	}
+    }
+    
+    public static void updateTerrainConsts(RmsBuilder builder, Scanner sc) {
+    	System.out.println("Current Terrain Constants:");
+    	System.out.println("Const ID | Const Name");
+    	for (Map.Entry<String, Long> entry : builder.getTerrainDefs().entrySet()) {
+    		System.out.println(String.format("%9d | ", entry.getValue()) + entry.getKey());
     	}
     }
     
