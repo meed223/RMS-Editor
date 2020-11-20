@@ -82,7 +82,28 @@ public class editorCli {
     				+ "\nMin Cliff Length: " + cliffs.getMinLength()
     				+ "\nMax No. Cliffs: " + cliffs.getMaxNumber()
     				+ "\nMin No. Cliffs: " + cliffs.getMinNumber());
-    		return;
+    		System.out.println("\nOptions:\n1. Update Max Cliff Length\n2. Update Min Cliff Length\n3. Update Maximum number of Cliffs\n4. Update Minimum number of Cliffs\n5. Exit");
+    		String input = sc.nextLine();
+    		switch(input.toUpperCase()) {
+	    		case "1" : 
+	    			cliffs.setMaxLength(sc.nextInt());
+	    			break;
+	    		case "2" : 
+	    			cliffs.setMinLength(sc.nextInt());
+	    			break;
+	    		case "3" : 
+	    			cliffs.setMaxNumber(sc.nextInt());
+	    			break;
+	    		case "4" : 
+	    			cliffs.setMinNumberCliffs(sc.nextInt());
+	    			break;
+	    		case "5" :
+	    		case "Exit" : 
+	    			builder.setCliffGeneration(cliffs);
+	    			return;
+	    		default:
+	    			System.out.println("\nInvalid input. Please try again.");
+    		}
     	}
     }
 }
