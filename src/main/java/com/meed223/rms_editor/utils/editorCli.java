@@ -88,6 +88,7 @@ public class editorCli {
     	for (Map.Entry<String, Long> entry : builder.getTerrainDefs().entrySet()) {
     		System.out.println(String.format("%9d | ", entry.getValue()) + entry.getKey());
     	}
+    	System.out.println("\nOptions:\n1. Add Const\n2. Delete Constant\n3. Return"); // TODO add "update" method
     }
     
     public static void updateCliffs(RmsBuilder builder, Scanner sc) {
