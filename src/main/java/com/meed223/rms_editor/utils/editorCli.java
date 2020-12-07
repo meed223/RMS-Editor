@@ -95,6 +95,7 @@ public class editorCli {
 	    	System.out.println("\nOptions:\n1. Add Const\n2. Delete Constant\n3. Update\n4. Return");
 	    	String input = sc.nextLine();
 	    	switch(input.toUpperCase()) {
+	    		case "ADD":
 	    		case "1":
 	    			System.out.println("\nEnter Const. Name");
 	    			String newName = sc.nextLine();
@@ -102,10 +103,12 @@ public class editorCli {
 	    			Long newValue = sc.nextLong();
 	    			builder.addTerrainDef(newName, newValue);
 	    			break;
+	    		case "DELETE":
 	    		case "2":
 	    			System.out.println("Enter name of Const. to be removed");
 	    			builder.delTerrainDef(sc.nextLine());
 	    			break;
+	    		case "UPDATE":
 	    		case "3":
 	    			System.out.println("\nEnter Const. Name");
 	    			String updateName = sc.nextLine();
@@ -136,6 +139,7 @@ public class editorCli {
 	    	System.out.println("\nOptions:\n1. Add Const\n2. Delete Constant\n3. Update\n4. Return");
 	    	String input = sc.nextLine();
 	    	switch(input.toUpperCase()) {
+	    		case "ADD":
 	    		case "1":
 	    			System.out.println("\nEnter Const. Name");
 	    			String newName = sc.nextLine();
@@ -143,10 +147,12 @@ public class editorCli {
 	    			Long newValue = sc.nextLong();
 	    			builder.addObjectDef(newName, newValue);
 	    			break;
+	    		case "DELETE":
 	    		case "2":
 	    			System.out.println("Enter name of Const. to be removed");
 	    			builder.delObjectDef(sc.nextLine());
 	    			break;
+	    		case "UPDATE":
 	    		case "3":
 	    			System.out.println("\nEnter Const. Name");
 	    			String updateName = sc.nextLine();
