@@ -83,8 +83,16 @@ public class RmsBuilder {
         	terrainDefs.put(name.replaceAll("\s", "_"), id);
         }
         
+        public void delTerrainDef(String name) {
+        	terrainDefs.remove(name);
+        }
+        
         public void addObjectDef(String name, Long id) {
         	objectDefs.put(name.replaceAll("\s", "_"), id);
+        }
+        
+        public void delObjectDef(String name) {
+        	objectDefs.remove(name);
         }
 
 
