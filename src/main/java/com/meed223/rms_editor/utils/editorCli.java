@@ -1,7 +1,9 @@
 package com.meed223.rms_editor.utils;
 
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Set;
 
 import com.meed223.rms_editor.map.elements.Cliff;
 
@@ -83,12 +85,44 @@ public class editorCli {
     }
     
     public static void updateTerrainConsts(RmsBuilder builder, Scanner sc) {
-    	System.out.println("Current Terrain Constants:");
-    	System.out.println("Const ID | Const Name");
-    	for (Map.Entry<String, Long> entry : builder.getTerrainDefs().entrySet()) {
-    		System.out.println(String.format("%9d | ", entry.getValue()) + entry.getKey());
+    	while (true) {
+	    	System.out.println("Current Terrain Constants:");
+	    	System.out.println("Const ID | Const Name");
+	    	for (Map.Entry<String, Long> entry : builder.getTerrainDefs().entrySet()) {
+	    		System.out.println(String.format("%9d | ", entry.getValue()) + entry.getKey());
+	    	}
+	    	System.out.println("\nOptions:\n1. Add Const\n2. Delete Constant\n3. Update\n4. Return");
+	    	String input = sc.nextLine();
+	    	switch(input.toUpperCase()) {
+	    		case "1":
+	    			System.out.println("\nEnter Const. Name");
+	    			String newName = sc.nextLine();
+	    			System.out.println("\nEnter Const. Value");
+	    			Long newValue = sc.nextLong();
+	    			builder.addTerrainDef(newName, newValue);
+	    			break;
+	    		case "2":
+	    			System.out.println("Enter name of Const. to be removed");
+	    			builder.delTerrainDef(sc.nextLine());
+	    			break;
+	    		case "3":
+	    			System.out.println("\nEnter Const. Name");
+	    			String updateName = sc.nextLine();
+	    			if (builder.terrainDefContains(updateName)) { 
+	    				System.out.println("\nEnter Const. Value");
+		    			Long updateValue = sc.nextLong();
+		    			builder.addTerrainDef(updateName, updateValue);
+	    			} else {
+	    				System.out.println("Const. not found. Create a new Const. with this name.");
+	    			}
+	    			break;
+	    		case "RETURN":
+	    		case "4":
+	    			return;
+	    		default:
+	    			System.out.println("\nInvalid input. Please try again.");
+	    	}
     	}
-    	System.out.println("\nOptions:\n1. Add Const\n2. Delete Constant\n3. Return"); // TODO add "update" method
     }
     
     public static void updateCliffs(RmsBuilder builder, Scanner sc) {
