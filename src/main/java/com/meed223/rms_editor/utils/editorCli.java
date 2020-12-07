@@ -89,7 +89,7 @@ public class editorCli {
 	    	System.out.println("Current Terrain Constants:");
 	    	System.out.println("Const ID | Const Name");
 	    	for (Map.Entry<String, Long> entry : builder.getTerrainDefs().entrySet()) {
-	    		System.out.println(String.format("%9d | ", entry.getValue()) + entry.getKey());
+	    		System.out.println(String.format("%8d | ", entry.getValue()) + entry.getKey());
 	    	}
 	    	System.out.println("\nOptions:\n1. Add Const\n2. Delete Constant\n3. Update\n4. Return");
 	    	String input = sc.nextLine();
