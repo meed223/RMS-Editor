@@ -53,6 +53,7 @@ public class editorCli {
                 	break;
                 case "4":
                 case "OBJECT CONSTANTS":
+                	updateObjectConsts(builder, sc);
                 	break;
                 case "5" :
                 case "CLIFF" : 
@@ -124,6 +125,47 @@ public class editorCli {
 	    	}
     	}
     }
+    
+    public static void updateObjectConsts(RmsBuilder builder, Scanner sc) {
+    	while (true) {
+	    	System.out.println("Current Object Constants:");
+	    	System.out.println("Const ID | Const Name");
+	    	for (Map.Entry<String, Long> entry : builder.getObjectDefs().entrySet()) {
+	    		System.out.println(String.format("%8d | ", entry.getValue()) + entry.getKey());
+	    	}
+	    	System.out.println("\nOptions:\n1. Add Const\n2. Delete Constant\n3. Update\n4. Return");
+	    	String input = sc.nextLine();
+	    	switch(input.toUpperCase()) {
+	    		case "1":
+	    			System.out.println("\nEnter Const. Name");
+	    			String newName = sc.nextLine();
+	    			System.out.println("\nEnter Const. Value");
+	    			Long newValue = sc.nextLong();
+	    			builder.addObjectDef(newName, newValue);
+	    			break;
+	    		case "2":
+	    			System.out.println("Enter name of Const. to be removed");
+	    			builder.delObjectDef(sc.nextLine());
+	    			break;
+	    		case "3":
+	    			System.out.println("\nEnter Const. Name");
+	    			String updateName = sc.nextLine();
+	    			if (builder.objectDefContains(updateName)) { 
+	    				System.out.println("\nEnter Const. Value");
+		    			Long updateValue = sc.nextLong();
+		    			builder.addObjectDef(updateName, updateValue);
+	    			} else {
+	    				System.out.println("Const. not found. Create a new Const. with this name.");
+	    			}
+	    			break;
+	    		case "RETURN":
+	    		case "4":
+	    			return;
+	    		default:
+	    			System.out.println("\nInvalid input. Please try again.");
+	    	}
+    	}
+    }  
     
     public static void updateCliffs(RmsBuilder builder, Scanner sc) {
     	while(true) {
