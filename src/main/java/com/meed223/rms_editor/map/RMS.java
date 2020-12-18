@@ -53,6 +53,7 @@ public class RMS {
         baseTerrain = null;
         terrainDefs = new HashMap<>();
         objectDefs = new HashMap<>();
+        game = GameType.DE; // Default to Definitive-Edition
 
         // Generation objects
         player = new Player();
