@@ -4,12 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.*;
+
+import com.meed223.rms_editor.exceptions.InvalidMapObjectException;
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
 
 public class TestUnitRMS {
@@ -24,6 +28,7 @@ public class TestUnitRMS {
 		this.mapScript = new RMS();
 		try {
 			this.mapScript.addNewTerrainConst(id, exampleConst);
+			this.mapScript.addNewObjectConst(id, exampleConst);
 		} catch (InvalidTerrainTypeException e) {
 			System.out.println("Error adding constant in test initialisation!");
 		}
@@ -49,7 +54,7 @@ public class TestUnitRMS {
 	void testAddNewTerrainConst() {
 		Long newId = 2L;
 		String newName = "example_const";
-		Map<String, Long> before = this.mapScript.getTerrainDefs();
+		Map<String, Long> before = new HashMap<String, Long>(this.mapScript.getTerrainDefs());
 		try {
 			// Add new constant
 			this.mapScript.addNewTerrainConst(newId, newName);
@@ -72,7 +77,7 @@ public class TestUnitRMS {
 		try {
 			this.mapScript.updateTerrainConst(newId, this.exampleConst);
 			assertTrue(this.mapScript.getTerrainDefs().containsKey(this.exampleConst));
-			assertTrue(this.mapScript.getTerrainDefs().get(this.exampleConst) == this.id);
+			assertTrue(this.mapScript.getTerrainDefs().get(this.exampleConst) == newId);
 		} catch (InvalidTerrainTypeException e) {
 			fail("InvalidTerrainTypeException thrown.");
 		}
@@ -107,10 +112,10 @@ public class TestUnitRMS {
 	void testAddNewObjectConst() {
 		Long newId = 2L;
 		String newName = "new_object";
-		Map<String, Long> before = this.mapScript.getObjectDefs();
+		Map<String, Long> before = new HashMap<String, Long>(this.mapScript.getObjectDefs());
 		try {
 			this.mapScript.addNewObjectConst(newId, newName);
-			assertFalse(before == this.mapScript.getObjectDefs());
+			assertFalse(before.equals(this.mapScript.getObjectDefs()));
 			assertTrue(this.mapScript.getObjectDefs().containsKey(newName));
 			assertTrue(this.mapScript.getObjectDefs().get(newName) == newId);
 		} catch(InvalidTerrainTypeException e) {
@@ -119,27 +124,41 @@ public class TestUnitRMS {
 	}
 	
 	@Test
-	void testupdateObjectConst() {
-		
+	void testUpdateObjectConst() throws InvalidTerrainTypeException {
+		Long newId = 2L;
+		try {
+			this.mapScript.updateObjectConst(newId, this.exampleConst);
+			assertTrue(this.mapScript.getObjectDefs().containsKey(this.exampleConst));
+			assertTrue(this.mapScript.getObjectDefs().get(this.exampleConst) == newId);
+		} catch (InvalidTerrainTypeException e) {
+			fail("InvalidTerrainTypeException thrown.");
+		}
 	}
 	
 	@Test
 	void testDeleteObjectConst() {
+		this.mapScript.deleteObjectConst(exampleConst);
 		
+		// Assert that the map is now empty (should have only been one entry)
+		assertTrue(this.mapScript.getObjectDefs().size() == 0);
 	}
 	
 	@Test
 	void testGetObjectConsts() {
+		List<String> consts = this.mapScript.getObjectConsts();
 		
+		// Assert  no additional entries have been added 
+		assertTrue(consts.size() == 1);
+		assertTrue(consts.get(0) == this.exampleConst);
 	}
 	
 	@Test
 	void testObjectConstExists() {
-		
+		assertTrue(this.mapScript.objectConstExists(this.exampleConst));	
 	}
 	
 	@Test
-	void testToString() {
-		
+	void testEquals() {
+		EqualsVerifier.simple().forClass(RMS.class).verify();
 	}
 }
