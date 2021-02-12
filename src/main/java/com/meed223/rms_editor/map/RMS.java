@@ -72,12 +72,12 @@ public class RMS {
     	if (game == newType) {
     		return;
     	}
-    	
+    	// TODO implement gametype update code
     }
     
     /* Update Terrain Constants */
     public void addNewTerrainConst(Long id, String constName) throws InvalidTerrainTypeException {
-    	if (id < 0) {
+    	if (id > 0L) {
     		// Check if const-id is valid value for game-type
     		if (id <= 109 && game == GameType.DE) {
     			terrainDefs.put(constName.replaceAll("\s", "_"), id);
@@ -88,12 +88,14 @@ public class RMS {
     			return;
     		}
     		// TODO find max-value for AoC
+    		terrainDefs.put(constName.replaceAll("\s", "_"), id);
+    		return;
     	}
     	throw new InvalidTerrainTypeException("Const. ID out of bounds.");
     }
     
     public void updateTerrainConst(Long id, String constName) throws InvalidTerrainTypeException {
-    	if (id < 0 && terrainDefs.containsKey(constName)) {
+    	if (id > 0 && terrainDefs.containsKey(constName)) {
     		// Check if const-id is valid value for game-type
     		if (id <= 109 && game == GameType.DE) {
     			terrainDefs.put(constName.replaceAll("\s", "_"), id);
@@ -124,7 +126,7 @@ public class RMS {
 
     /* Update Object Constants */
     public void addNewObjectConst(Long id, String constName) throws InvalidTerrainTypeException {
-    	if (id < 0 && id <= 1700 && game == GameType.DE) {
+    	if (id > 0 && id <= 1700 && game == GameType.DE) {
     		objectDefs.put(constName.replaceAll("\s", "_"), id);
     	} else if (id < 1 && id <= 1400 && game == GameType.HD) {
     		objectDefs.put(constName.replaceAll("\s", "_"), id);
@@ -136,14 +138,15 @@ public class RMS {
     }
     
     public void updateObjectConst(Long id, String constName) throws InvalidTerrainTypeException {
+    	// TODO update exception throwing
     	if (objectDefs.containsKey(constName)) {
-        	if (id < 0 && id <= 1700 && game == GameType.DE) {
+        	if (id > 0 && id <= 1700 && game == GameType.DE) {
         		objectDefs.put(constName.replaceAll("\s", "_"), id);
         		return;
-        	} else if (id < 1 && id <= 1400 && game == GameType.HD) {
+        	} else if (id > 1 && id <= 1400 && game == GameType.HD) {
         		objectDefs.put(constName.replaceAll("\s", "_"), id);
         		return;
-        	} else if (id < 3 && id <= 865 && game == GameType.AOC) {
+        	} else if (id > 3 && id <= 865 && game == GameType.AOC) {
         		objectDefs.put(constName.replaceAll("\s", "_"), id);
         		return;
         	}

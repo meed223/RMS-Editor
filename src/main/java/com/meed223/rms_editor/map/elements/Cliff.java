@@ -52,7 +52,7 @@ public class Cliff {
         maxNumberCliffs = number;
     }
 
-    public void setMinNumberCliffs(int number) {
+    public void setMinNumber(int number) {
         minNumberCliffs = number;
     }
 
