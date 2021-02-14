@@ -78,10 +78,10 @@ public class editorCli {
     	while(true) {
     		Cliff cliffs = builder.getCliffGeneration();
     		System.out.println("\nCurrent Setup of Cliffs:"
-    				+ "\nMax Cliff Length: " + cliffs.getMaxLength()
-    				+ "\nMin Cliff Length: " + cliffs.getMinLength()
-    				+ "\nMax No. Cliffs: " + cliffs.getMaxNumber()
-    				+ "\nMin No. Cliffs: " + cliffs.getMinNumber());
+    				+ "\nMax Cliff Length: " + cliffs.getMaxLengthCliffs()
+    				+ "\nMin Cliff Length: " + cliffs.getMinLengthCliffs()
+    				+ "\nMax No. Cliffs: " + cliffs.getMaxNumberCliffs()
+    				+ "\nMin No. Cliffs: " + cliffs.getMinNumberCliffs());
     		return;
     	}
     }
