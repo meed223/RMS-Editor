@@ -4,6 +4,11 @@ import com.meed223.rms_editor.exceptions.InvalidInputException;
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
 import com.meed223.rms_editor.map.GameType;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+@Getter
+@EqualsAndHashCode
 public class Land {
 	private GameType gameType;
     private String terrainType;
@@ -73,26 +78,6 @@ public class Land {
     		this.gameType = GameType.DE;
     	}
     }
-    
-    /* Hash Code */
-    @Override
-    public int hashCode() {
-        int hash = 31;
-        hash = 7 * hash + (terrainType == null ? 0 : terrainType.hashCode());
-        hash = 7 * hash + landPercent;
-        hash = 7 * hash + borderFuzziness;
-        hash = 7 * hash + zoneAvoidance;
-        hash = 7 * hash + zone;
-        hash = 7 * hash + zoneSet.hashCode();
-        hash = 7 * hash + zoneByTeam.hashCode();
-        hash = 7 * hash + zoneRandomly.hashCode();
-        hash = 7 * hash + landId;
-        hash = 7 * hash + assignToPlayer;
-        hash = 7 * hash + assignToPlayerSet.hashCode();
-        hash = 7 * hash + clumpingFactor;
-        return hash;
-        // TODO add null check for bool objects
-    }
 
     /* Convert to RMS */
     @Override
@@ -101,21 +86,11 @@ public class Land {
         return "";
     }
 
-
-    /* Getters & Setters */
-    public String getTerrainType() {
-        return terrainType;
-    }
-
     public void setTerrainType(String terrainType) throws InvalidTerrainTypeException {
         if (terrainType == null || terrainType.length() == 0) {
              throw new InvalidTerrainTypeException("Invalid terrain type given. Expected non-null or non-zero (length) type.");
         }
         this.terrainType = terrainType.replaceAll("\\s", "_");
-    }
-
-    public int getLandPercent() {
-        return landPercent;
     }
 
     public void setLandPercent(int landPercent) throws InvalidInputException {
@@ -126,10 +101,6 @@ public class Land {
         }
     }
 
-    public int getBorderFuzziness() {
-        return borderFuzziness;
-    }
-
     public void setBorderFuzziness(int borderFuzziness) throws InvalidInputException {
         if (borderFuzziness < 0 || borderFuzziness > 100) {
             throw new InvalidInputException("Invalid border-fuzziness value given. Expected value between 0 and 100.");
@@ -137,8 +108,6 @@ public class Land {
             this.borderFuzziness = borderFuzziness;
         }
     }
-
-    public int getZoneAvoidance() { return zoneAvoidance; }
 
     public void setZoneAvoidance(int zoneAvoidance) throws InvalidInputException {
         // TODO set upper bound for no. tiles - using dimensions of 'ludicrous' map size
@@ -149,8 +118,6 @@ public class Land {
         }
     }
 
-    public int getZone() { return zone; }
-
     public void setZone(int zone) throws InvalidInputException {
         if (zone < 0) {
             throw new InvalidInputException("Negative value for zone id. Must be a positive value.");
@@ -158,8 +125,6 @@ public class Land {
             this.zone = zone;
         }
     }
-
-    public int getLandId() { return landId; }
 
     public void setLandId(int landId) throws InvalidInputException {
         if (landId < 0) {
@@ -169,8 +134,6 @@ public class Land {
         }
     }
 
-    public int getAssignToPlayer() { return assignToPlayer; }
-
     public void setAssignToPlayer(int assignToPlayer) throws InvalidInputException {
         if (landId <= 0 || landId > 8) {
             throw new InvalidInputException("Invalid player Id. Assign-to-player must be between 1 and 8.");
@@ -179,8 +142,6 @@ public class Land {
             assignToPlayerSet = true;
         }
     }
-
-    public int getClumpingFactor() { return clumpingFactor; }
 
     public void setClumpingFactor(int clumpingFactor) throws InvalidInputException {
         if (clumpingFactor <= 0 || landId > 15) {
