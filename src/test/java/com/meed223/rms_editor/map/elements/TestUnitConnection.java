@@ -14,6 +14,9 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 public class TestUnitConnection {
 	// Test Consts:
 	private Connection connection;
+	private String baseTerrain = "WATER";
+	private String replacementTerrain = "GRASS";
+	private int cost = 1;
 
 	// Test(s) setup
 	@BeforeEach
@@ -27,10 +30,37 @@ public class TestUnitConnection {
 	}
 	
 	@Test
+	void testSetBaseTerrain() {
+		try {
+			this.connection.setBaseTerrain(this.baseTerrain);
+			assertEquals(this.baseTerrain, this.connection.getBaseTerrain());
+		} catch (InvalidTerrainTypeException e) {
+			fail("InvalidTerrainTypeException thrown.");
+		}
+	}
+	
+	@Test
+	void testSetReplacementTerrain() {
+		try {
+			this.connection.setReplacementTerrain(this.replacementTerrain);
+			assertEquals(this.replacementTerrain, this.connection.getReplacementTerrain());
+		} catch (InvalidTerrainTypeException e) {
+			fail("InvalidTerrainTypeException thrown.");
+		}
+	}
+	
+	@Test
+	void testSetTerrainCost() {
+		try {
+			this.connection.setTerrainCost(this.cost);
+			assertEquals(this.cost, this.connection.getTerrainCost());
+		} catch (InvalidInputException e) {
+			fail("InvalidInputException thrown.");
+		}
+	}
+	
+	@Test
 	void testToString() {
-		String baseTerrain = "WATER";
-		String replacementTerrain = "GRASS";
-		int cost = 1;
 		try {
 			this.connection.setBaseTerrain(baseTerrain);
 			this.connection.setReplacementTerrain(replacementTerrain);
