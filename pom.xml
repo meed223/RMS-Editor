@@ -19,5 +19,19 @@
 	    <version>1.18.12</version>
 	    <scope>provided</scope>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+	<dependency>
+	    <groupId>org.junit.jupiter</groupId>
+	    <artifactId>junit-jupiter-api</artifactId>
+	    <version>5.7.0</version>
+	    <scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/nl.jqno.equalsverifier/equalsverifier -->
+	<dependency>
+	    <groupId>nl.jqno.equalsverifier</groupId>
+	    <artifactId>equalsverifier</artifactId>
+	    <version>3.5</version>
+	    <scope>test</scope>
+	</dependency>	
   </dependencies>
 </project>
