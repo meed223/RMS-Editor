@@ -76,4 +76,5 @@ public class Elevation {
         }
     }
 
+    // TODO check clump size limits
 }
