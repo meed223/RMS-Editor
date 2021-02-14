@@ -14,9 +14,9 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 public class TestUnitConnection {
 	// Test Consts:
 	private Connection connection;
-	private String baseTerrain = "WATER";
-	private String replacementTerrain = "GRASS";
-	private int cost = 1;
+	final private String baseTerrain = "WATER";
+	final private String replacementTerrain = "GRASS";
+	final private int cost = 1;
 
 	// Test(s) setup
 	@BeforeEach
