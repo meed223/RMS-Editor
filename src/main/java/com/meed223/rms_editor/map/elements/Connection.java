@@ -3,6 +3,11 @@ package com.meed223.rms_editor.map.elements;
 import com.meed223.rms_editor.exceptions.InvalidInputException;
 import com.meed223.rms_editor.exceptions.InvalidTerrainTypeException;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+@Getter
+@EqualsAndHashCode
 public class Connection {
     private String baseTerrain;
     private String replacementTerrain;
@@ -21,16 +26,6 @@ public class Connection {
         terrainCost = 0;
     }
 
-    /* Hash Code */
-    @Override
-    public int hashCode() {
-        int hash = 31;
-        hash = hash * 7 + (baseTerrain == null ? 0 : baseTerrain.hashCode());
-        hash = hash * 7 + (replacementTerrain == null ? 0 : replacementTerrain.hashCode());
-        hash = hash * 7 + terrainCost;
-        return hash;
-    }
-
     /* Convert to RMS */
     @Override
     public String toString() {
@@ -45,10 +40,6 @@ public class Connection {
     }
 
     /* Getters & Setters */
-    public String getBaseTerrain() {
-        return baseTerrain;
-    }
-
     public void setBaseTerrain(String baseTerrain) throws InvalidTerrainTypeException {
         if (baseTerrain == null || baseTerrain.length() == 0) {
             throw new InvalidTerrainTypeException("Invalid terrain type given. Expected non-null or non-zero (length) type.");
@@ -56,19 +47,11 @@ public class Connection {
         this.baseTerrain = baseTerrain.replaceAll("\\s", "_");
     }
 
-    public String getReplacementTerrain() {
-        return replacementTerrain;
-    }
-
     public void setReplacementTerrain(String replacementTerrain) throws InvalidTerrainTypeException {
         if (replacementTerrain == null || replacementTerrain.length() == 0) {
             throw new InvalidTerrainTypeException("Invalid terrain type given. Expected non-null or non-zero (length) type.");
         }
         this.replacementTerrain = replacementTerrain.replaceAll("\\s", "_");
-    }
-
-    public int getTerrainCost() {
-        return terrainCost;
     }
 
     public void setTerrainCost(int terrainCost) throws InvalidInputException {
