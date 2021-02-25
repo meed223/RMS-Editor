@@ -24,8 +24,11 @@ public class TestUnitLand {
     private final Boolean zoneRandomly = true;
     private final int landId = 1;
     private final int assignToPlayer = 1;
+    private final int assignToPlayerAboveBound = 9;
+    private final int negative = -1;
     private final Boolean assignToPlayerSet = true;
     private final int clumpingFactor = 5;
+    private final int clumpingFactorAboveBound = 16;
     
     @BeforeEach
     void init() {
@@ -105,6 +108,7 @@ public class TestUnitLand {
     
     @Test
     void testSetAssignToPlayer() {
+    	// Test setter functions correctly
     	try {
     		this.land.setAssignToPlayer(this.assignToPlayer);
     		assertEquals(this.assignToPlayer, this.land.getAssignToPlayer());
@@ -112,10 +116,32 @@ public class TestUnitLand {
     		fail("InvalidInputException thrown.");
     	}
     }
-    // TODO expand test for > 0 and < 8 values
+    
+    @Test
+    void testSetAssignToPlayerAboveBound() {
+    	// Test upper limit of settable values
+    	try {
+    		this.land.setAssignToPlayer(this.assignToPlayerAboveBound);
+    		fail("InvalidInputException not thrown.");
+    	} catch (InvalidInputException e) {
+    		return;
+    	}
+    }
+    
+    @Test
+    void testSetAssignToPlayerBelowBound() { 
+    	// Test lower limit of settable values
+    	try {
+    		this.land.setAssignToPlayer(this.negative);
+    		fail("InvalidInputException not thrown.");
+    	} catch (InvalidInputException e) {
+    		return;
+    	}
+    }
     
     @Test
     void testSetClumpingFactor() {
+    	// Test setter functions correclty
     	try {
     		this.land.setClumpingFactor(this.clumpingFactor);
     		assertEquals(this.clumpingFactor, this.land.getClumpingFactor());
@@ -123,5 +149,26 @@ public class TestUnitLand {
     		fail("InvalidInputException thrown.");
     	}
     }
-    // TODO expand test for > 0 and < 15 values
+    
+    @Test
+    void testSetClumpingFactorAboveBound() {
+    	// Test upper limit of settable values
+    	try {
+    		this.land.setClumpingFactor(this.clumpingFactorAboveBound);
+    		fail("InvalidInputException not thrown.");
+    	} catch (InvalidInputException e) {
+    		return;
+    	}
+    }
+    
+    @Test
+    void testSetClumpingFactorBelowBound() {
+    	// Test lower limit of settable values
+    	try {
+    		this.land.setClumpingFactor(this.negative);
+    		fail("InvalidInputException not thrown.");
+    	} catch (InvalidInputException e) {
+    		return;
+    	}
+    }
 }
