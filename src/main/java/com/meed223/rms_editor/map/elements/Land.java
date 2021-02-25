@@ -82,8 +82,14 @@ public class Land {
     /* Convert to RMS */
     @Override
     public String toString() {
-    	// TODO implement RMS method
-        return "";
+    	StringBuilder sb = new StringBuilder();
+    	// TODO implement condition for no. tiles
+    	sb.append("create_land\n{");
+    	sb.append("\nterrain_type");
+    	sb.append(this.terrainType);
+    	sb.append("\nland_percent");
+    	sb.append(this.landPercent);
+    	return sb.toString();
     }
 
     public void setTerrainType(String terrainType) throws InvalidTerrainTypeException {
@@ -135,7 +141,7 @@ public class Land {
     }
 
     public void setAssignToPlayer(int assignToPlayer) throws InvalidInputException {
-        if (landId <= 0 || landId > 8) {
+        if (assignToPlayer <= 0 || assignToPlayer > 8) {
             throw new InvalidInputException("Invalid player Id. Assign-to-player must be between 1 and 8.");
         } else {
             this.assignToPlayer = assignToPlayer;
@@ -144,7 +150,7 @@ public class Land {
     }
 
     public void setClumpingFactor(int clumpingFactor) throws InvalidInputException {
-        if (clumpingFactor <= 0 || landId > 15) {
+        if (clumpingFactor <= 0 || clumpingFactor > 15) {
             throw new InvalidInputException("Invalid clumping-factor value. Value must be between 1 and 15.");
         } else {
             this.clumpingFactor = clumpingFactor;
