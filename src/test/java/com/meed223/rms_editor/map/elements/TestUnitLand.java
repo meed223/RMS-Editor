@@ -87,12 +87,36 @@ public class TestUnitLand {
     }
     
     @Test
+    void testSetZoneAvoidanceLowerBound() {
+    	try {
+    		this.land.setZoneAvoidance(this.negative);
+    		fail("InvalidInputException not thrown.");
+    	} catch (InvalidInputException e) {
+    		return;
+    	} catch (Exception e) {
+    		fail("Generic Exception thrown. Should throw InvalidInputException.");
+    	}
+    }
+    
+    @Test
     void testSetZone() {
     	try {
     		this.land.setZone(this.zone);
     		assertEquals(this.zone, this.land.getZone());
     	} catch (InvalidInputException e) {
     		fail("InvalidInputException thrown.");
+    	}
+    }
+    
+    @Test
+    void testSetZoneLowerBound() {
+    	try {
+    		this.land.setZone(this.negative);
+    		fail("InvalidInputException not thrown.");
+    	} catch (InvalidInputException e) {
+    		return;
+    	} catch (Exception e) {
+    		fail("Generic Exception thrown. Should throw InvalidInputException.");
     	}
     }
     
@@ -114,6 +138,8 @@ public class TestUnitLand {
     		assertEquals(this.assignToPlayer, this.land.getAssignToPlayer());
     	} catch (InvalidInputException e) {
     		fail("InvalidInputException thrown.");
+    	} catch (Exception e) {
+    		fail("Generic Exception thrown. Should throw InvalidInputException.");
     	}
     }
     
@@ -125,6 +151,8 @@ public class TestUnitLand {
     		fail("InvalidInputException not thrown.");
     	} catch (InvalidInputException e) {
     		return;
+    	} catch (Exception e) {
+    		fail("Generic Exception thrown. Should throw InvalidInputException.");
     	}
     }
     
@@ -136,6 +164,8 @@ public class TestUnitLand {
     		fail("InvalidInputException not thrown.");
     	} catch (InvalidInputException e) {
     		return;
+    	} catch (Exception e) {
+    		fail("Generic Exception thrown. Should throw InvalidInputException.");
     	}
     }
     
@@ -158,6 +188,8 @@ public class TestUnitLand {
     		fail("InvalidInputException not thrown.");
     	} catch (InvalidInputException e) {
     		return;
+    	} catch (Exception e) {
+    		fail("Generic Exception thrown. Should throw InvalidInputException.");
     	}
     }
     
@@ -169,6 +201,8 @@ public class TestUnitLand {
     		fail("InvalidInputException not thrown.");
     	} catch (InvalidInputException e) {
     		return;
+    	} catch (Exception e) {
+    		fail("Generic Exception thrown. Should throw InvalidInputException.");
     	}
     }
 }
